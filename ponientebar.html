@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poniente Beach Bar | Menú Digital</title>
+    <style>
+        :root {
+            --primary: #FF6B35; /* Appetizing Orange */
+            --dark: #292929;
+            --light: #F7F7F7;
+        }
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: var(--light);
+            margin: 0;
+            color: var(--dark);
+            padding-bottom: 80px;
+        }
+        /* Hero Section */
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16549766b?auto=format&fit=crop&w=800');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+            color: white;
+            width: 100%;
+        }
+        h1 { margin: 0; font-size: 28px; }
+        .status { 
+            display: inline-block; 
+            background: #4CAF50; 
+            color: white; 
+            padding: 4px 10px; 
+            border-radius: 20px; 
+            font-size: 12px; 
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Menu Grid */
+        .container { padding: 20px; max-width: 600px; margin: 0 auto; }
+        
+        .category {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .category:active { transform: scale(0.98); }
+        
+        .category-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .icon { font-size: 24px; margin-right: 10px; }
+        
+        /* Hidden Menu Items */
+        .items { display: none; padding: 0 20px 20px 20px; border-top: 1px solid #eee; }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .item-info h3 { margin: 0 0 5px 0; font-size: 16px; }
+        .item-desc { font-size: 13px; color: #666; margin: 0; }
+        .price { font-weight: bold; color: var(--primary); }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Poniente Beach Bar</h1>
+            <span class="status">OPEN NOW • 09:00 - 23:00</span>
+            <p>Mediterranean Cuisine • Cocktails • Sea View</p>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="category" onclick="toggleMenu('tapas')">
+            <div class="category-header">
+                <div><span class="icon">🥘</span> Tapas & Starters</div>
+                <span>▼</span>
+            </div>
+            <div id="tapas" class="items">
+                <div class="item">
+                    <div class="item-info">
+                        <h3>Patatas Bravas</h3>
+                        <p class="item-desc">Crispy potatoes with spicy sauce & aioli</p>
+                    </div>
+                    <div class="price">€6.50</div>
+                </div>
+                <div class="item">
+                    <div class="item-info">
+                        <h3>Calamares a la Andaluza</h3>
+                        <p class="item-desc">Fresh fried squid rings with lemon</p>
+                    </div>
+                    <div class="price">€12.00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category" onclick="toggleMenu('mains')">
+            <div class="category-header">
+                <div><span class="icon">🥘</span> Paellas & Rice</div>
+                <span>▼</span>
+            </div>
+            <div id="mains" class="items">
+                <div class="item">
+                    <div class="item-info">
+                        <h3>Paella Valenciana</h3>
+                        <p class="item-desc">Chicken, rabbit, green beans (Min 2 pax)</p>
+                    </div>
+                    <div class="price">€14.50 pp</div>
+                </div>
+                <div class="item">
+                    <div class="item-info">
+                        <h3>Seafood Paella</h3>
+                        <p class="item-desc">Prawns, mussels, squid, clams</p>
+                    </div>
+                    <div class="price">€16.00 pp</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category" onclick="toggleMenu('drinks')">
+            <div class="category-header">
+                <div><span class="icon">🍹</span> Cocktails & Wine</div>
+                <span>▼</span>
+            </div>
+            <div id="drinks" class="items">
+                <div class="item">
+                    <div class="item-info">
+                        <h3>Aperol Spritz</h3>
+                        <p class="item-desc">Prosecco, Aperol, Soda</p>
+                    </div>
+                    <div class="price">€8.50</div>
+                </div>
+                <div class="item">
+                    <div class="item-info">
+                        <h3>Sangria (Jug)</h3>
+                        <p class="item-desc">1 Liter of homemade red wine sangria</p>
+                    </div>
+                    <div class="price">€18.00</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="https://wa.me/34965432371?text=Hola,%20I%20want%20to%20book%20a%20table" class="whatsapp-float">
+        Book Table <span>💬</span>
+    </a>
+
+    <script>
+        function toggleMenu(id) {
+            var x = document.getElementById(id);
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
