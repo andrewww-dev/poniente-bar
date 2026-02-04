@@ -1,5 +1,14 @@
 {
-  "rewrites": [
-    { "source": "/api/book", "destination": "/api/book.py" }
+  "builds": [
+    {
+      "src": "api/book.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/book",
+      "dest": "/api/book.py"
+    }
   ]
 }
